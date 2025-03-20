@@ -122,4 +122,37 @@ public class Simulacion {
 		System.out.println("Prueba 4: Agrega correctamente los elementos seleccionados al carrito.");
 	}
 
+	// Prueba de sumatoria de precio final
+	@Test
+	public void prueba5() {
+		WebElement txtUsername = driver.findElement(By.id("user-name"));
+		WebElement txtPassword = driver.findElement(By.id("password"));
+		WebElement btnLogin = driver.findElement(By.id("login-button"));
+		txtUsername.sendKeys("standard_user");
+		txtPassword.sendKeys("secret_sauce");
+		btnLogin.click();
+		WebElement btnAddToCart1 = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[2]/div/div[1]/div[3]/button"));
+		btnAddToCart1.click();
+		WebElement btnAddToCart2 = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[2]/div/div[4]/div[3]/button"));
+		btnAddToCart2.click();
+		WebElement btnCart = driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/div[2]/a/span"));
+		btnCart.click();
+		WebElement btnCheckOut = driver.findElement(By.xpath("/html/body/div/div[2]/div[3]/div/div[2]/a[2]"));
+		btnCheckOut.click();
+		WebElement txtFirstName = driver.findElement(By.id("first-name"));
+		txtFirstName.sendKeys("Fernando");
+		WebElement txtLastName = driver.findElement(By.id("last-name"));
+		txtLastName.sendKeys("Garro");
+		WebElement txtPostalCode = driver.findElement(By.id("postal-code"));
+		txtPostalCode.sendKeys("20701");
+		WebElement btnContinue = driver.findElement(By.xpath("/html/body/div/div[2]/div[3]/div/form/div[2]/input"));
+		btnContinue.click();
+		WebElement lblTotal = driver.findElement(By.xpath("/html/body/div/div[2]/div[3]/div/div[2]/div[7]"));
+		String txtTotal = lblTotal.getText();
+		assertEquals("Prueba de suma para precio total", "Total: $86.38", txtTotal);
+		System.out.println("Prueba 5: La suma del precio total es correcta.");
+	}
+
 }
