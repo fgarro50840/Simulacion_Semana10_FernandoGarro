@@ -155,4 +155,23 @@ public class Simulacion {
 		System.out.println("Prueba 5: La suma del precio total es correcta.");
 	}
 
+	// Prueba de funcionalidad boton "Continue Shopping" en la seccion del cart
+	@Test
+	public void prueba6() {
+		WebElement txtUsername = driver.findElement(By.id("user-name"));
+		WebElement txtPassword = driver.findElement(By.id("password"));
+		WebElement btnLogin = driver.findElement(By.id("login-button"));
+		txtUsername.sendKeys("standard_user");
+		txtPassword.sendKeys("secret_sauce");
+		btnLogin.click();
+		WebElement btnCart = driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/div[2]"));
+		btnCart.click();
+		WebElement btnContinueShopping = driver.findElement(By.xpath("/html/body/div/div[2]/div[3]/div/div[2]/a[1]"));
+		btnContinueShopping.click();
+		WebElement lblProducto = driver.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[1]/div[3]/div"));
+		String txtProducto = lblProducto.getText();
+		assertEquals("Prueba de label Producto", "Products", txtProducto);
+		System.out.println("Prueba 6: Funcionamiento correcto del boton 'ContinueShoping'.");
+	}
+
 }
