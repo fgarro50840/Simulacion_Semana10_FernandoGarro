@@ -68,4 +68,29 @@ public class Simulacion {
 		System.out.println("Prueba 2: Cerrado de sesión correcto.");
 	}
 
+	// Prueba de orden de elementos
+	@Test
+	public void prueba3() {
+		WebElement txtUsername = driver.findElement(By.id("user-name"));
+		WebElement txtPassword = driver.findElement(By.id("password"));
+		WebElement btnLogin = driver.findElement(By.id("login-button"));
+		txtUsername.sendKeys("standard_user");
+		txtPassword.sendKeys("secret_sauce");
+		btnLogin.click();
+		WebElement selectSortBy = driver.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[1]/div[3]/select"));
+		selectSortBy.click();
+		WebElement selectSortByPrice = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[1]/div[3]/select/option[3]"));
+		selectSortByPrice.click();
+		WebElement lblLowestPrice = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[2]/div/div[1]/div[3]/div"));
+		String txtLowestPrice = lblLowestPrice.getText();
+		assertEquals("Prueba de label Precio menor", "$7.99", txtLowestPrice);
+		WebElement lblHiguestPrice = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[2]/div/div[6]/div[3]/div"));
+		String txtHiguestPrice = lblHiguestPrice.getText();
+		assertEquals("Prueba de label Precio mayor", "$49.99", txtHiguestPrice);
+		System.out.println("Prueba 3: Ordena correctamente los elementos por precio en orden ascendente.");
+	}
+
 }
