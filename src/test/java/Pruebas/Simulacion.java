@@ -93,4 +93,33 @@ public class Simulacion {
 		System.out.println("Prueba 3: Ordena correctamente los elementos por precio en orden ascendente.");
 	}
 
+	// Prueba de agregar elementos al carrito
+	@Test
+	public void prueba4() {
+		WebElement txtUsername = driver.findElement(By.id("user-name"));
+		WebElement txtPassword = driver.findElement(By.id("password"));
+		WebElement btnLogin = driver.findElement(By.id("login-button"));
+		txtUsername.sendKeys("standard_user");
+		txtPassword.sendKeys("secret_sauce");
+		btnLogin.click();
+		WebElement btnAddToCart1 = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[2]/div/div[1]/div[3]/button"));
+		btnAddToCart1.click();
+		WebElement btnAddToCart2 = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[2]/div/div[2]/div/div[4]/div[3]/button"));
+		btnAddToCart2.click();
+		WebElement btnCart = driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/div[2]/a/span"));
+		btnCart.click();
+		WebElement lblFisrtAddedElement = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[3]/div/div[1]/div[3]/div[2]/a/div"));
+		String txtFisrtAddedElement = lblFisrtAddedElement.getText();
+		assertEquals("Prueba de primer elemento agregado al carrito", "Sauce Labs Backpack", txtFisrtAddedElement);
+		WebElement lblSecondAddedElement = driver
+				.findElement(By.xpath("/html/body/div/div[2]/div[3]/div/div[1]/div[4]/div[2]/a/div"));
+		String txtSecondAddedElement = lblSecondAddedElement.getText();
+		assertEquals("Prueba de segundo elemento agregado al carrito", "Sauce Labs Fleece Jacket",
+				txtSecondAddedElement);
+		System.out.println("Prueba 4: Agrega correctamente los elementos seleccionados al carrito.");
+	}
+
 }
