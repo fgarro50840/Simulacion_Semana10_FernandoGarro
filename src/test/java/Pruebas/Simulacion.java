@@ -47,5 +47,10 @@ public class Simulacion {
 		assertEquals("Prueba de label Producto", "Products", txtProducto);
 		
 	}
+	
+	@Test
+	public void prueba2() {
+		
+	}
 
 }
